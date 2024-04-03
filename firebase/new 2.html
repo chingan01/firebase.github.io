@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>健身計劃</title>
+</head>
+<body>
+    <h2>新增健身計劃</h2>
+    <form id="fitnessForm">
+        <label for="username">使用者名稱:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="height">身高 (cm):</label><br>
+        <input type="number" id="height" name="height" required><br>
+        <label for="weight">體重 (kg):</label><br>
+        <input type="number" id="weight" name="weight" required><br>
+        <label for="sports">運動類型:</label><br>
+        <input type="text" id="sports" name="sports" required><br>
+        <label for="time">運動時間 (分鐘):</label><br>
+        <input type="text" id="time" name="time" required><br><br>
+        <button type="button" onclick="showFitnessPlan()">新增健身計劃</button> <!-- 使用 type="button" 避免預設行為 -->    
+         <div id="exercise-plan"></div>
+    </form>
+    
+    <h2></h2>
+    <form method="post">
+        <label for="username">使用者名稱:</label><br>
+        <label for="height">身高(cm):</label><br>
+        <label for="weight">體重(kg):</label><br>
+        <label for="sports">運動類型:</label><br>
+        <label for="time">運動時間 (分鐘):</label><br>
+    </form>
+
+    <p id="message"></p>
+    
+
+  <script src="http://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+  <script src="http://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+  <script>
+    //Firebase 初始化配置
+    var firebaseConfig= {
+      apiKey: "AIzaSyBh6WztyzsjfKLuNCGDzaVqCV7BVVFhpOM",
+      authDomain: "test-addd1-535f8.firebaseapp.com",
+      projectId: "test-addd1-535f8",
+      storageBucket: "test-addd1-535f8.appspot.com",
+      messagingSenderId: "914084141456",
+      appId: "1:914084141456:web:b490073faff28b3565fb15",
+    };
+
+    // 初始化 Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    
+
+    // 獲取登入表單
+    var loginForm = document.getElementById('loginForm');  
+    var message = document.getElementById('message');
+  
+
+    // 處理登入表單提交事件
+    loginForm.addEventListener('submit', function(event)) {
+      event.preventDefault(); // 防止表單自動提交
+    
+      
+      var email = loginForm.email.value;
+      var password = loginForm.password;
+      
+
+      // 使用 Firebase 身份驗證服務進行登入
+      firebase.auth().signInWithEmailAndPassword(username, height, weight, sports, time)
+        .then((userCredential)) => {
+          //登入成功 , 顯示訊息  
+          message.textContent = "登入成功!";
+        }};
+        </script>
+          <id="submittedData"> <!-- 顯示提交的數據 -->
+
+     <script src="http://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+     <script src="http://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"></script>
+     <script>
+       // Firebase 初始化配置
+       var firebaseConfig = {
+        apiKey: "AIzaSyBh6WztyzsjfKLuNCGDzaVqCV7BVVFhpOM",
+        authDomain: "test-addd1-535f8.firebaseapp.com",
+        projectId: "test-addd1-535f8",
+        storageBucket: "test-addd1-535f8.appspot.com",
+        messagingSenderId: "914084141456",
+        appId: "1:914084141456:web:b490073faff28b3565fb15",
+       };
+       
+       // 初始化 Firebase
+       firebase.initializeApp(firebaseConfig);
+       
+       //獲取登入表單
+       var loginForm = document.getElementById('loginForm');
+       var message = document.getElementById('message');
+
+       // 處理登入表單提交事件
+       loginForm.addEventListener('submit', function(event)
+         event.preventDefault();
+
+         var username = loginForm.username.value;
+         var height = loginForm.height.value;
+         var weight = loginForm.weight.value;
+         var sports = loginForm.sports.value;
+         var time = loginForm.time.value;
+
+
+         // 在提交之前顯示填寫的數據
+        var submittedData = document.getElementById('submittedData');
+        submittedData.innerHTML = "<strong>提交的數據:</strong><br>" +
+                                  "使用者名稱: " + username + "<br>" +
+                                  "身高: " + height + " 公分<br>" +
+                                  "體重: " + weight + " 公斤<br>" +
+                                  "運動種類: " + sports + "<br>" +
+                                  "運動時間: " + time;
+
+         var email = loginForm.email.value;
+         var password = loginForm.password.value;
+
+         // 使用 Firebase 身份驗證服務進行登入
+         firebase.auth().signInWithEmailAndPassword(username, height, weight, sports, time)
+           .then((userCredential)) => {
+             message.textContent = "登入成功! ";
+           }}
+           .catch((error)) => {
+             var errorMessage = error.message;
+             message.textContent = "登入失敗: " + errorMessage;
+           };  
+          
+    </script>
+</body>
+</html>
+
